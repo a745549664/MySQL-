@@ -1,0 +1,29 @@
+/*============================================ 2023-02-10 09:38 批量更新 =====================================================*/
+// 批量更新(方法1)
+UPDATE Table_01 AS A 
+JOIN 
+(
+  SELECT columns1, columns2, columns3, 'data1' AS columns4, 'data2' AS columns5 FROM Table_02 WHERE ID=1
+) AS B 
+USING(columns1, columns2, columns3) 
+SET A.columns4=B.columns4, A.columns5=B.columns5;
+
+/*============================================ 2023-02-10 09:38 批量插入 =====================================================*/
+// 批量插入(方法1)
+INSERT INTO Table_01(columns1, columns2, columns3, columns4, columns5)
+SELECT columns1, columns2, columns3, columns4, columns5
+FROM 
+(
+ (SELECT columns1, columns2, columns3, columns4, columns5 FROM Table_02 WHERE ID=1)
+ UNION
+ (SELECT columns1, columns2, columns3, columns4, columns5 FROM Table_02 WHERE ID=2)
+ UNION
+ (SELECT columns1, columns2, columns3, columns4, columns5 FROM Table_02 WHERE ID=2)
+) AS A;
+
+// 批量插入(方法2)
+INSERT INTO Table_01(columns1, columns2, columns3, columns4, columns5)
+VALUES
+('data11', 'data12', 'data13', 'data14', 'data15'),
+('data21', 'data22', 'data23', 'data24', 'data25'),
+('data31', 'data32', 'data33', 'data34', 'data35');
