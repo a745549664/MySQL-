@@ -27,3 +27,8 @@ VALUES
 ('data11', 'data12', 'data13', 'data14', 'data15'),
 ('data21', 'data22', 'data23', 'data24', 'data25'),
 ('data31', 'data32', 'data33', 'data34', 'data35');
+
+/*============================================ 2023-02-28 11:30 连表删除 =====================================================*/
+DELETE A 
+FROM Table_01 AS A, Table_02 AS B 
+WHERE 1=1 AND A.ID=B.ID;
