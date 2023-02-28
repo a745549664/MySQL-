@@ -1,12 +1,10 @@
 /*============================================ 2023-02-10 09:38 批量更新 =====================================================*/
 // 批量更新(方法1)
 UPDATE Table_01 AS A 
-JOIN 
-(
-  SELECT columns1, columns2, columns3, 'data1' AS columns4, 'data2' AS columns5 FROM Table_02 WHERE ID=1
-) AS B 
+JOIN (SELECT columns1, columns2, columns3, 'data1' AS columns4, 'data2' AS columns5 FROM Table_02 WHERE ID=1) AS B 
 USING(columns1, columns2, columns3) 
 SET A.columns4=B.columns4, A.columns5=B.columns5;
+
 
 /*============================================ 2023-02-10 09:38 批量插入 =====================================================*/
 // 批量插入(方法1)
@@ -28,7 +26,9 @@ VALUES
 ('data21', 'data22', 'data23', 'data24', 'data25'),
 ('data31', 'data32', 'data33', 'data34', 'data35');
 
+
 /*============================================ 2023-02-28 11:30 连表删除 =====================================================*/
+// 连表删除(方法1)
 DELETE A 
 FROM Table_01 AS A, Table_02 AS B 
 WHERE 1=1 AND A.ID=B.ID;
